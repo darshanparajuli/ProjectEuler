@@ -1,9 +1,18 @@
 #include "common/log.h"
+#include "common/util.h"
+
+#include "prob3.h"
 #include "prob4.h"
+#include "prob5.h"
+
+#define ProblemAnswer(n) _ProblemAnswer(n)
+#define _ProblemAnswer(n) prob##n##Answer()
+
+#define PROBLEM_NUMBER 5
 
 int main()
 {
-    LOGI("prob4 answer: %llu\n", prob4Answer());
+    LOGI("problem %d answer: %llu\n", PROBLEM_NUMBER, ProblemAnswer(PROBLEM_NUMBER));
 
     return 0;
 }

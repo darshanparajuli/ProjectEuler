@@ -7,6 +7,7 @@
 
 #define MacroConcat(a, b) _MacroConcat(a, b)
 #define _MacroConcat(a, b) a##b
+#define Stringize(s) #s
 
 #define Assert(expr)                                                           \
     if (!(expr))                                                               \
