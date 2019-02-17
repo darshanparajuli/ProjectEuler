@@ -7,7 +7,7 @@ By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that 
 What is the 10_001st prime number?
 */
 
-ProblemFunc(7)
+SolveProblemFunc(7)
 {
     u32 count = 10001;
 

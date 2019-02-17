@@ -7,7 +7,7 @@
 What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 */
 
-ProblemFunc(5)
+SolveProblemFunc(5)
 {
     u32 result = 2520;
 

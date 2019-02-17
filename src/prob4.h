@@ -32,7 +32,7 @@ internal b32 isPalindrome(u32 n)
     return result;
 }
 
-ProblemFunc(4)
+SolveProblemFunc(4)
 {
     u32 result = 0;
 

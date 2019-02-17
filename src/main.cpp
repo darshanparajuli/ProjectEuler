@@ -1,7 +1,7 @@
 #include "common/log.h"
-#include "common/util.h"
-#include "common/mem.h"
 #include "common/math.h"
+#include "common/mem.h"
+#include "common/util.h"
 
 #include "prob3.h"
 #include "prob4.h"
@@ -10,17 +10,17 @@
 #include "prob7.h"
 #include "prob8.h"
 
-#define ProblemAnswer(n, buffer) _ProblemAnswer(n, buffer)
-#define _ProblemAnswer(n, buffer) prob##n##Answer(buffer)
+#define SolveProblem(n, buffer) _SolveProblem(n, buffer)
+#define _SolveProblem(n, buffer) MacroConcat(solveProblem, n)(buffer)
 
-#define PROBLEM_NUMBER 8
+#define PROBLEM_NUMBER 9
 
 int main()
 {
     char buffer[256];
     StringBuffer stringBuffer = createStringBuffer(buffer, ArrayCount(buffer));
 
-    ProblemAnswer(PROBLEM_NUMBER, &stringBuffer);
+    SolveProblem(PROBLEM_NUMBER, &stringBuffer);
 
     LOGI("problem %d answer: %s\n", PROBLEM_NUMBER, stringBuffer.buffer);
 

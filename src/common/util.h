@@ -9,8 +9,8 @@
 #define _MacroConcat(a, b) a##b
 #define Stringize(s) #s
 
-#define ProblemFunc(n) _ProblemFunc(n)
-#define _ProblemFunc(n) internal void prob##n##Answer(StringBuffer *output)
+#define SolveProblemFunc(n) _SolveProblemFunc(n)
+#define _SolveProblemFunc(n) internal void MacroConcat(solveProblem, n)(StringBuffer * output)
 #define ProblemWriteOutput(...) stringBufferWrite(output, __VA_ARGS__)
 
 #define Assert(expr)                                                           \
