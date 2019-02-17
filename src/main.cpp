@@ -11,11 +11,12 @@
 #include "prob8.h"
 #include "prob9.h"
 #include "prob10.h"
+#include "prob11.h"
 
 #define SolveProblem(n, buffer) _SolveProblem(n, buffer)
 #define _SolveProblem(n, buffer) MacroConcat(solveProblem, n)(buffer)
 
-#define PROBLEM_NUMBER 10
+#define PROBLEM_NUMBER 11
 
 int main()
 {

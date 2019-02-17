@@ -53,22 +53,22 @@ internal inline f64 mathSquareRoot(f64 n)
     return sqrt(n);
 }
 
-#define mathSquareImpl(type)                \
+#define ImplMathSquare(type)                \
     internal inline type mathSquare(type n) \
     {                                       \
         return n * n;                       \
     }
 
-mathSquareImpl(f32);
-mathSquareImpl(f64);
-mathSquareImpl(u8);
-mathSquareImpl(u16);
-mathSquareImpl(u32);
-mathSquareImpl(u64);
-mathSquareImpl(s8);
-mathSquareImpl(s16);
-mathSquareImpl(s32);
-mathSquareImpl(s64);
+ImplMathSquare(f32);
+ImplMathSquare(f64);
+ImplMathSquare(u8);
+ImplMathSquare(u16);
+ImplMathSquare(u32);
+ImplMathSquare(u64);
+ImplMathSquare(s8);
+ImplMathSquare(s16);
+ImplMathSquare(s32);
+ImplMathSquare(s64);
 
 internal inline f32 mathSin(f32 n)
 {
@@ -140,43 +140,43 @@ internal inline f32 mathAbs(f32 n)
     return (n >= 0.0f) ? n : -n;
 }
 
-#define mathMinImpl(type)                       \
-    internal inline f32 mathMin(type a, type b) \
-    {                                           \
-        return a < b ? a : b;                   \
+#define ImplMathMin(type)                        \
+    internal inline type mathMin(type a, type b) \
+    {                                            \
+        return a < b ? a : b;                    \
     }
 
-mathMinImpl(u8);
-mathMinImpl(u16);
-mathMinImpl(u32);
-mathMinImpl(u64);
+ImplMathMin(u8);
+ImplMathMin(u16);
+ImplMathMin(u32);
+ImplMathMin(u64);
 
-mathMinImpl(s8);
-mathMinImpl(s16);
-mathMinImpl(s32);
-mathMinImpl(s64);
+ImplMathMin(s8);
+ImplMathMin(s16);
+ImplMathMin(s32);
+ImplMathMin(s64);
 
-mathMinImpl(f32);
-mathMinImpl(f64);
+ImplMathMin(f32);
+ImplMathMin(f64);
 
-#define mathMaxImpl(type)                       \
-    internal inline f32 mathMax(type a, type b) \
-    {                                           \
-        return a > b ? a : b;                   \
+#define ImplMathMax(type)                        \
+    internal inline type mathMax(type a, type b) \
+    {                                            \
+        return a > b ? a : b;                    \
     }
 
-mathMaxImpl(u8);
-mathMaxImpl(u16);
-mathMaxImpl(u32);
-mathMaxImpl(u64);
+ImplMathMax(u8);
+ImplMathMax(u16);
+ImplMathMax(u32);
+ImplMathMax(u64);
 
-mathMaxImpl(s8);
-mathMaxImpl(s16);
-mathMaxImpl(s32);
-mathMaxImpl(s64);
+ImplMathMax(s8);
+ImplMathMax(s16);
+ImplMathMax(s32);
+ImplMathMax(s64);
 
-mathMaxImpl(f32);
-mathMaxImpl(f64);
+ImplMathMax(f32);
+ImplMathMax(f64);
 
 internal inline u32 mathRoundUpToPowerOfTwo(u32 value)
 {
@@ -252,6 +252,24 @@ internal inline u32 countDigits(u64 n)
     {
         n /= 10;
         ++result;
+    }
+
+    return result;
+}
+
+internal inline usize mathGetMaxIndex(u64 *values, usize count)
+{
+    usize result = 0;
+    u64 max = 0;
+
+    for (usize i = 0; i < count; ++i)
+    {
+        u64 temp = values[i];
+        if (temp > max)
+        {
+            max = temp;
+            result = i;
+        }
     }
 
     return result;
