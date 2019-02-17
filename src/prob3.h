@@ -2,6 +2,7 @@
 #define PE_PROB3_H
 
 #include "common/math.h"
+#include "common/util.h"
 
 /*
 
@@ -11,7 +12,7 @@ What is the largest prime factor of the number 600851475143 ?
 
 */
 
-internal u64 prob3Answer()
+ProblemFunc(3)
 {
     u64 input = 600851475143;
 
@@ -27,7 +28,7 @@ internal u64 prob3Answer()
         }
     }
 
-    return result;
+    ProblemWriteOutput("%llu", result);
 }
 
 #endif

@@ -3,6 +3,7 @@
 
 #include "common/log.h"
 #include "common/math.h"
+#include "common/util.h"
 
 /*
 A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
@@ -35,7 +36,7 @@ internal b32 isPalindrome(u32 n)
     return result;
 }
 
-internal u32 prob4Answer()
+ProblemFunc(4)
 {
     u32 result = 0;
 
@@ -51,7 +52,7 @@ internal u32 prob4Answer()
         }
     }
 
-    return result;
+    ProblemWriteOutput("%d", result);
 }
 
 #endif

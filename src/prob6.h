@@ -2,6 +2,7 @@
 #define PE_PROB6_H
 
 #include "common/math.h"
+#include "common/util.h"
 
 /*
 The sum of the squares of the first ten natural numbers is,
@@ -15,7 +16,7 @@ Hence the difference between the sum of the squares of the first ten natural num
 Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 */
 
-u64 prob6Answer()
+ProblemFunc(6)
 {
     u64 result = 0;
 
@@ -31,7 +32,7 @@ u64 prob6Answer()
     u64 squareOfTheSum = mathSquare(sum);
     result = squareOfTheSum - sumOfSquares;
 
-    return result;
+    ProblemWriteOutput("%llu", result);
 }
 
 #endif
