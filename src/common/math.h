@@ -53,10 +53,22 @@ internal inline f64 mathSquareRoot(f64 n)
     return sqrt(n);
 }
 
-internal inline f32 mathSquare(f32 n)
-{
-    return n * n;
-}
+#define mathSquareImpl(type)                \
+    internal inline type mathSquare(type n) \
+    {                                       \
+        return n * n;                       \
+    }
+
+mathSquareImpl(f32);
+mathSquareImpl(f64);
+mathSquareImpl(u8);
+mathSquareImpl(u16);
+mathSquareImpl(u32);
+mathSquareImpl(u64);
+mathSquareImpl(s8);
+mathSquareImpl(s16);
+mathSquareImpl(s32);
+mathSquareImpl(s64);
 
 internal inline f32 mathSin(f32 n)
 {
