@@ -257,16 +257,4 @@ internal inline u32 countDigits(u64 n)
     return result;
 }
 
-internal inline u32 mathCharToU32(char c)
-{
-    u32 result = c - '0';
-    return result;
-}
-
-internal inline u32 mathCharToU64(char c)
-{
-    u64 result = c - '0';
-    return result;
-}
-
 #endif

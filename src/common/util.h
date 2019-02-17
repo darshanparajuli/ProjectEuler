@@ -119,4 +119,16 @@ struct StringBuffer
 StringBuffer createStringBuffer(char *buffer, u32 size);
 void stringBufferWrite(StringBuffer *buffer, cstr *fmt, ...);
 
+internal inline u32 charToU32(char c)
+{
+    u32 result = c - '0';
+    return result;
+}
+
+internal inline u32 charToU64(char c)
+{
+    u64 result = c - '0';
+    return result;
+}
+
 #endif

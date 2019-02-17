@@ -61,7 +61,7 @@ ProblemFunc(8)
         u64 product = 1;
         for (u32 i = 0; i < adjCount; ++i)
         {
-            product *= mathCharToU64(*(c + i));
+            product *= charToU64(*(c + i));
         }
 
         products[productIndex++] = product;
