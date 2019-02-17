@@ -128,35 +128,43 @@ internal inline f32 mathAbs(f32 n)
     return (n >= 0.0f) ? n : -n;
 }
 
-internal inline f32 mathMin(f32 a, f32 b)
-{
-    return a < b ? a : b;
-}
+#define mathMinImpl(type)                       \
+    internal inline f32 mathMin(type a, type b) \
+    {                                           \
+        return a < b ? a : b;                   \
+    }
 
-internal inline u32 mathMin(u32 a, u32 b)
-{
-    return a < b ? a : b;
-}
+mathMinImpl(u8);
+mathMinImpl(u16);
+mathMinImpl(u32);
+mathMinImpl(u64);
 
-internal inline s32 mathMin(s32 a, s32 b)
-{
-    return a < b ? a : b;
-}
+mathMinImpl(s8);
+mathMinImpl(s16);
+mathMinImpl(s32);
+mathMinImpl(s64);
 
-internal inline f32 mathMax(f32 a, f32 b)
-{
-    return a > b ? a : b;
-}
+mathMinImpl(f32);
+mathMinImpl(f64);
 
-internal inline u32 mathMax(u32 a, u32 b)
-{
-    return a > b ? a : b;
-}
+#define mathMaxImpl(type)                       \
+    internal inline f32 mathMax(type a, type b) \
+    {                                           \
+        return a > b ? a : b;                   \
+    }
 
-internal inline s32 mathMax(s32 a, s32 b)
-{
-    return a > b ? a : b;
-}
+mathMaxImpl(u8);
+mathMaxImpl(u16);
+mathMaxImpl(u32);
+mathMaxImpl(u64);
+
+mathMaxImpl(s8);
+mathMaxImpl(s16);
+mathMaxImpl(s32);
+mathMaxImpl(s64);
+
+mathMaxImpl(f32);
+mathMaxImpl(f64);
 
 internal inline u32 mathRoundUpToPowerOfTwo(u32 value)
 {

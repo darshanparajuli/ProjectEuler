@@ -17,16 +17,13 @@ internal u64 prob3LargestPrimeFactor()
 
     u64 result = 0;
 
-    s64 start = (s64)((f64) input / 256.0) + 1;
-    // LOGD("start: %ld\n", start);
-
-    for (s64 i = start; i >= 3; i -= 2)
+    u64 sqrtOfInput = (u64) mathSquareRoot((f64) input);
+    for (u64 i = 3; i < sqrtOfInput; i += 2)
     {
         // LOGD("i: %d\n", i);
-        if (input % i == 0 && mathIsPrime((u64) i))
+        if (input % i == 0 && mathIsPrime(i))
         {
-            result = i;
-            break;
+            result = mathMax(i, result);
         }
     }
 
