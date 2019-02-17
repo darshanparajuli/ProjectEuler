@@ -10,11 +10,12 @@
 #include "prob7.h"
 #include "prob8.h"
 #include "prob9.h"
+#include "prob10.h"
 
 #define SolveProblem(n, buffer) _SolveProblem(n, buffer)
 #define _SolveProblem(n, buffer) MacroConcat(solveProblem, n)(buffer)
 
-#define PROBLEM_NUMBER 9
+#define PROBLEM_NUMBER 10
 
 int main()
 {
@@ -23,7 +24,7 @@ int main()
 
     SolveProblem(PROBLEM_NUMBER, &stringBuffer);
 
-    LOGI("problem %d answer: %s\n", PROBLEM_NUMBER, stringBuffer.buffer);
+    LOGI("Problem %d solution: %s\n", PROBLEM_NUMBER, stringBuffer.buffer);
 
     return 0;
 }
