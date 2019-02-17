@@ -11,7 +11,7 @@ What is the largest prime factor of the number 600851475143 ?
 
 */
 
-internal u64 prob3LargestPrimeFactor()
+internal u64 prob3Answer()
 {
     u64 input = 600851475143;
 

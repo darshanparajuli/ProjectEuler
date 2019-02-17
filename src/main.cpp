@@ -1,10 +1,9 @@
 #include "common/log.h"
-#include "prob3.h"
+#include "prob4.h"
 
 int main()
 {
-    // LOGI("prob3 answer: %llu\n", prob3LargestPrimeFactor());
-    LOGI("prob3 answer: %llu\n", prob3LargestPrimeFactor());
+    LOGI("prob4 answer: %llu\n", prob4Answer());
 
     return 0;
 }

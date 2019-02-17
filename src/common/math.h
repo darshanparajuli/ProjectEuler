@@ -232,4 +232,17 @@ ImplIsOdd(s64);
 
 b32 mathIsPrime(u64 n);
 
+internal inline u32 countDigits(u64 n)
+{
+    u32 result = 0;
+
+    while (n)
+    {
+        n /= 10;
+        ++result;
+    }
+
+    return result;
+}
+
 #endif
