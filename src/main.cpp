@@ -9,6 +9,7 @@
 #include "prob6.h"
 #include "prob7.h"
 #include "prob8.h"
+#include "prob9.h"
 
 #define SolveProblem(n, buffer) _SolveProblem(n, buffer)
 #define _SolveProblem(n, buffer) MacroConcat(solveProblem, n)(buffer)
