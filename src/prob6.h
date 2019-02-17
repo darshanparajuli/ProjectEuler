@@ -1,9 +1,6 @@
 #ifndef PE_PROB6_H
 #define PE_PROB6_H
 
-#include "common/math.h"
-#include "common/util.h"
-
 /*
 The sum of the squares of the first ten natural numbers is,
 

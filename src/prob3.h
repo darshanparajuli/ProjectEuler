@@ -1,15 +1,10 @@
 #ifndef PE_PROB3_H
 #define PE_PROB3_H
 
-#include "common/math.h"
-#include "common/util.h"
-
 /*
-
 The prime factors of 13195 are 5, 7, 13 and 29.
 
 What is the largest prime factor of the number 600851475143 ?
-
 */
 
 ProblemFunc(3)

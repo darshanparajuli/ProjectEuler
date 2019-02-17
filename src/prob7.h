@@ -1,8 +1,6 @@
 #ifndef PE_PROB7_H
 #define PE_PROB7_H
 
-#include "common/util.h"
-
 /*
 By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
 

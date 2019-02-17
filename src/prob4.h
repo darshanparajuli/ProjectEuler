@@ -1,10 +1,6 @@
 #ifndef PE_PROB4_H
 #define PE_PROB4_H
 
-#include "common/log.h"
-#include "common/math.h"
-#include "common/util.h"
-
 /*
 A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
 

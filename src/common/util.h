@@ -89,12 +89,24 @@ internal inline u32 stringLength(cstr *string)
     return result;
 }
 
-internal inline void swap(u32 *a, u32 *b)
-{
-    u32 temp = *a;
-    *a = *b;
-    *b = temp;
-}
+#define SwapImpl(type)                          \
+    internal inline void swap(type *a, type *b) \
+    {                                           \
+        type temp = *a;                         \
+        *a = *b;                                \
+        *b = temp;                              \
+    }
+
+SwapImpl(u8);
+SwapImpl(u16);
+SwapImpl(u32);
+SwapImpl(u64);
+SwapImpl(s8);
+SwapImpl(s16);
+SwapImpl(s32);
+SwapImpl(s64);
+SwapImpl(f32);
+SwapImpl(f64);
 
 struct StringBuffer
 {
