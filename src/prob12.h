@@ -50,8 +50,6 @@ SolveProblemFunc(12)
 
     u32 i = 1;
 
-    getDivisorCount(60);
-
     for (;;)
     {
         u32 divisorCount = getDivisorCount(result);
