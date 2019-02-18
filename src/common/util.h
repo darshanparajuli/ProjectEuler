@@ -107,6 +107,7 @@ SwapImpl(s32);
 SwapImpl(s64);
 SwapImpl(f32);
 SwapImpl(f64);
+SwapImpl(char);
 
 struct StringBuffer
 {
@@ -118,6 +119,7 @@ struct StringBuffer
 
 StringBuffer createStringBuffer(char *buffer, u32 size);
 void stringBufferWrite(StringBuffer *buffer, cstr *fmt, ...);
+void stringBufferReverse(StringBuffer *buffer);
 
 internal inline u32 charToU32(char c)
 {

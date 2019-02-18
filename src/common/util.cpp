@@ -47,3 +47,12 @@ void stringBufferWrite(StringBuffer *sb, cstr *fmt, ...)
         va_end(args);
     }
 }
+
+void stringBufferReverse(StringBuffer *buffer)
+{
+    u32 n = buffer->used / 2;
+    for (u32 i = 0; i < n; ++i)
+    {
+        swap(&buffer->buffer[i], &buffer->buffer[buffer->used - i - 1]);
+    }
+}
