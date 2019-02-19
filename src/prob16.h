@@ -7,7 +7,7 @@
 What is the sum of the digits of the number 2^1000?
 */
 
-internal inline void multiplyBy2(StringBuffer *input, StringBuffer *output)
+internal void multiplyBy2(StringBuffer *input, StringBuffer *output)
 {
     u32 carry = 0;
 
@@ -57,6 +57,8 @@ SolveProblemFunc(16)
     {
         result += charToU32(output[i]);
     }
+
+    LOGD("result: %s\n", output.string);
 
     ProblemWriteOutput("%d", result);
 }
