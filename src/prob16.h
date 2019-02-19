@@ -55,7 +55,7 @@ SolveProblemFunc(16)
     u64 result = 0;
     for (u32 i = 0; i < output.used; ++i)
     {
-        result += charToU32(output.string[i]);
+        result += charToU32(output[i]);
     }
 
     ProblemWriteOutput("%d", result);
