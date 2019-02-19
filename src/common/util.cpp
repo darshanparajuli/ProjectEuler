@@ -29,6 +29,12 @@ StringBuffer createStringBuffer(char *buffer, u32 size)
     return sb;
 }
 
+StringBuffer createStringBuffer(MemoryArena *memoryArena, u32 size)
+{
+    char *buffer = PushArray(memoryArena, char, size);
+    return createStringBuffer(buffer, size);
+}
+
 void stringBufferWrite(StringBuffer *sb, cstr *fmt, ...)
 {
     if (sb->used >= sb->size)

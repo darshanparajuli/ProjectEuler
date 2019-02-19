@@ -4,14 +4,11 @@
 #include <cstdlib>
 #include "log.h"
 #include "types.h"
+#include "mem.h"
 
 #define MacroConcat(a, b) _MacroConcat(a, b)
 #define _MacroConcat(a, b) a##b
 #define Stringize(s) #s
-
-#define SolveProblemFunc(n) _SolveProblemFunc(n)
-#define _SolveProblemFunc(n) internal void MacroConcat(solveProblem, n)(StringBuffer * output)
-#define ProblemWriteOutput(...) stringBufferWrite(output, __VA_ARGS__)
 
 #define Assert(expr)                                                           \
     if (!(expr))                                                               \
@@ -118,6 +115,7 @@ struct StringBuffer
 };
 
 StringBuffer createStringBuffer(char *buffer, u32 size);
+StringBuffer createStringBuffer(MemoryArena *memoryArena, u32 size);
 void stringBufferWrite(StringBuffer *buffer, cstr *fmt, ...);
 void stringBufferReverse(StringBuffer *buffer);
 

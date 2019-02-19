@@ -3,6 +3,18 @@
 #include "common/mem.h"
 #include "common/util.h"
 
+#define SolveProblemFunc(n) _SolveProblemFunc(n)
+#define _SolveProblemFunc(n) internal void MacroConcat(solveProblem, n)(MemoryArena * memoryArena, StringBuffer * output)
+#define ProblemWriteOutput(...) stringBufferWrite(output, __VA_ARGS__)
+#define ProblemPushStruct(...) PushStruct(memoryArena, __VA_ARGS__)
+#define ProblemPushArray(...) PushArray(memoryArena, __VA_ARGS__)
+
+#include "prob10.h"
+#include "prob11.h"
+#include "prob12.h"
+#include "prob13.h"
+#include "prob14.h"
+#include "prob15.h"
 #include "prob3.h"
 #include "prob4.h"
 #include "prob5.h"
@@ -10,26 +22,28 @@
 #include "prob7.h"
 #include "prob8.h"
 #include "prob9.h"
-#include "prob10.h"
-#include "prob11.h"
-#include "prob12.h"
-#include "prob13.h"
-#include "prob14.h"
-#include "prob15.h"
 
-#define SolveProblem(n, buffer) _SolveProblem(n, buffer)
-#define _SolveProblem(n, buffer) MacroConcat(solveProblem, n)(buffer)
+#define SolveProblem(n, memoryArena, buffer) _SolveProblem(n, memoryArena, buffer)
+#define _SolveProblem(n, memoryArena, buffer) MacroConcat(solveProblem, n)(memoryArena, buffer)
 
 #define PROBLEM_NUMBER 15
 
 int main()
 {
-    char buffer[256];
-    StringBuffer stringBuffer = createStringBuffer(buffer, ArrayCount(buffer));
+    MemoryArena memoryArena = {};
+    {
+        usize size = MegaBytes(32);
+        u8 *memory = (u8 *) malloc(size);
+        InitMemoryArena(&memoryArena, size, memory);
+    }
 
-    SolveProblem(PROBLEM_NUMBER, &stringBuffer);
+    StringBuffer stringBuffer = createStringBuffer(&memoryArena, 256);
+
+    SolveProblem(PROBLEM_NUMBER, &memoryArena, &stringBuffer);
 
     LOGI("Problem %d solution: %s\n", PROBLEM_NUMBER, stringBuffer.buffer);
+
+    free(memoryArena.base);
 
     return 0;
 }

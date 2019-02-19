@@ -12,12 +12,12 @@ SolveProblemFunc(15)
 {
     u64 result = 0;
 
-    u32 total = 20;
+    u32 gridSize = 20;
 
-    u64 waysToGetToOuterPoints[32] = {};
+    u64 *waysToGetToOuterPoints = ProblemPushArray(u64, gridSize + 1);
     waysToGetToOuterPoints[0] = 1;
 
-    for (u32 i = 1; i <= total; ++i)
+    for (u32 i = 1; i <= gridSize; ++i)
     {
         result = 0;
         for (u32 k = 0; k < i; ++k)
