@@ -9,12 +9,7 @@
 #define ProblemPushStruct(...) PushStruct(memoryArena, __VA_ARGS__)
 #define ProblemPushArray(...) PushArray(memoryArena, __VA_ARGS__)
 
-#include "prob10.h"
-#include "prob11.h"
-#include "prob12.h"
-#include "prob13.h"
-#include "prob14.h"
-#include "prob15.h"
+// clang-format off
 #include "prob3.h"
 #include "prob4.h"
 #include "prob5.h"
@@ -22,6 +17,12 @@
 #include "prob7.h"
 #include "prob8.h"
 #include "prob9.h"
+#include "prob10.h"
+#include "prob11.h"
+#include "prob12.h"
+#include "prob13.h"
+#include "prob14.h"
+#include "prob15.h"
 
 #define SolveProblem(n, memoryArena, buffer) _SolveProblem(n, memoryArena, buffer)
 #define _SolveProblem(n, memoryArena, buffer) MacroConcat(solveProblem, n)(memoryArena, buffer)
