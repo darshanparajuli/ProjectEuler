@@ -18,26 +18,26 @@ cstr *_getFileName(cstr *path)
     return path;
 }
 
-StringBuffer createStringBuffer(char *buffer, u32 size)
+StringBuffer createStringBuffer(char *buffer, u32 capacity)
 {
     StringBuffer sb = {};
 
     sb.string = buffer;
-    sb.size = size;
-    sb.used = 0;
+    sb.capacity = capacity;
+    sb.length = 0;
 
     return sb;
 }
 
-StringBuffer createStringBuffer(MemoryArena *memoryArena, u32 size)
+StringBuffer createStringBuffer(MemoryArena *memoryArena, u32 capacity)
 {
-    char *buffer = PushArray(memoryArena, char, size);
-    return createStringBuffer(buffer, size);
+    char *buffer = PushArray(memoryArena, char, capacity);
+    return createStringBuffer(buffer, capacity);
 }
 
 void stringBufferFormat(StringBuffer *sb, cstr *fmt, ...)
 {
-    if (sb->used >= sb->size)
+    if (sb->length >= sb->capacity)
     {
         LOGD("StringBuffer is full!\n");
     }
@@ -46,9 +46,9 @@ void stringBufferFormat(StringBuffer *sb, cstr *fmt, ...)
         va_list args;
         va_start(args, fmt);
 
-        u32 available = sb->size - sb->used;
-        char *buffer = sb->string + sb->used;
-        sb->used += vsnprintf(buffer, available, fmt, args);
+        u32 available = sb->capacity - sb->length;
+        char *buffer = sb->string + sb->length;
+        sb->length += vsnprintf(buffer, available, fmt, args);
 
         va_end(args);
     }
@@ -56,22 +56,22 @@ void stringBufferFormat(StringBuffer *sb, cstr *fmt, ...)
 
 void stringBufferReverse(StringBuffer *buffer)
 {
-    u32 n = buffer->used / 2;
+    u32 n = buffer->length / 2;
     for (u32 i = 0; i < n; ++i)
     {
-        swap(&buffer->string[i], &buffer->string[buffer->used - i - 1]);
+        swap(&buffer->string[i], &buffer->string[buffer->length - i - 1]);
     }
 }
 
 
 void stringBufferCopy(StringBuffer *src, StringBuffer *dest)
 {
-    Assert(dest->used <= src->used);
+    Assert(dest->length <= src->length);
 
-    for (usize i = 0; i < src->used; ++i)
+    for (usize i = 0; i < src->length; ++i)
     {
         dest->string[i] = src->string[i];
     }
 
-    dest->used = src->used;
+    dest->length = src->length;
 }

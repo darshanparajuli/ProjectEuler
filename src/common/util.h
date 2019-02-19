@@ -109,8 +109,9 @@ ImplSwap(char);
 struct StringBuffer
 {
     char *string;
-    u32 size;
-    u32 used;
+    u32 capacity;
+
+    u32 length;
 
     inline char &operator[](usize index)
     {
@@ -118,15 +119,24 @@ struct StringBuffer
     }
 };
 
-StringBuffer createStringBuffer(char *buffer, u32 size);
-StringBuffer createStringBuffer(MemoryArena *memoryArena, u32 size);
+StringBuffer createStringBuffer(char *buffer, u32 capacity);
+StringBuffer createStringBuffer(MemoryArena *memoryArena, u32 capacity);
 void stringBufferFormat(StringBuffer *buffer, cstr *fmt, ...);
 void stringBufferReverse(StringBuffer *buffer);
 void stringBufferCopy(StringBuffer *src, StringBuffer *dest);
 
-internal inline void stringBufferClear(StringBuffer *sb)
+internal inline void stringBufferClear(StringBuffer *sb, b32 overwrite = false)
 {
-    sb->used = 0;
+    sb->length = 0;
+}
+
+internal inline void stringBufferClearOverwite(StringBuffer *sb)
+{
+    while (sb->length > 0)
+    {
+        sb->string[sb->length - 1] = 0;
+        --sb->length;
+    }
 }
 
 internal inline u32 charToU32(char c)
