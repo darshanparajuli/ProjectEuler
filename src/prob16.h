@@ -58,8 +58,6 @@ SolveProblemFunc(16)
         result += charToU32(output[i]);
     }
 
-    LOGD("result: %s\n", output.string);
-
     ProblemWriteOutput("%d", result);
 }
 
