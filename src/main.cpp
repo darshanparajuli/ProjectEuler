@@ -41,7 +41,7 @@ int main()
 
     SolveProblem(PROBLEM_NUMBER, &memoryArena, &stringBuffer);
 
-    LOGI("Problem %d solution: %s\n", PROBLEM_NUMBER, stringBuffer.buffer);
+    LOGI("Problem %d solution: %s\n", PROBLEM_NUMBER, stringBuffer.string);
 
     free(memoryArena.base);
 

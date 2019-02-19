@@ -13,7 +13,7 @@ internal inline void multiplyBy2(StringBuffer *input, StringBuffer *output)
 
     for (s32 i = input->used - 1; i >= 0; --i)
     {
-        u32 digit = charToU32(input->buffer[i]);
+        u32 digit = charToU32(input->string[i]);
         u32 result = digit * 2 + carry;
         u32 d = result % 10;
         carry = result / 10;
@@ -29,9 +29,9 @@ internal inline void multiplyBy2(StringBuffer *input, StringBuffer *output)
         carry /= 10;
     }
 
-    while (output->used > 0 && output->buffer[output->used - 1] == '0')
+    while (output->used > 0 && output->string[output->used - 1] == '0')
     {
-        output->buffer[output->used - 1] = '\0';
+        output->string[output->used - 1] = '\0';
         --output->used;
     }
     stringBufferReverse(output);
@@ -55,7 +55,7 @@ SolveProblemFunc(16)
     u64 result = 0;
     for (u32 i = 0; i < output.used; ++i)
     {
-        result += charToU32(output.buffer[i]);
+        result += charToU32(output.string[i]);
     }
 
     ProblemWriteOutput("%d", result);

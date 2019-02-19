@@ -22,7 +22,7 @@ StringBuffer createStringBuffer(char *buffer, u32 size)
 {
     StringBuffer sb = {};
 
-    sb.buffer = buffer;
+    sb.string = buffer;
     sb.size = size;
     sb.used = 0;
 
@@ -47,7 +47,7 @@ void stringBufferFormat(StringBuffer *sb, cstr *fmt, ...)
         va_start(args, fmt);
 
         u32 available = sb->size - sb->used;
-        char *buffer = sb->buffer + sb->used;
+        char *buffer = sb->string + sb->used;
         sb->used += vsnprintf(buffer, available, fmt, args);
 
         va_end(args);
@@ -59,7 +59,7 @@ void stringBufferReverse(StringBuffer *buffer)
     u32 n = buffer->used / 2;
     for (u32 i = 0; i < n; ++i)
     {
-        swap(&buffer->buffer[i], &buffer->buffer[buffer->used - i - 1]);
+        swap(&buffer->string[i], &buffer->string[buffer->used - i - 1]);
     }
 }
 
@@ -70,7 +70,7 @@ void stringBufferCopy(StringBuffer *src, StringBuffer *dest)
 
     for (usize i = 0; i < src->used; ++i)
     {
-        dest->buffer[i] = src->buffer[i];
+        dest->string[i] = src->string[i];
     }
 
     dest->used = src->used;

@@ -108,10 +108,14 @@ ImplSwap(char);
 
 struct StringBuffer
 {
-    char *buffer;
+    char *string;
     u32 size;
-
     u32 used;
+
+    inline char &operator[](usize index)
+    {
+        return string[index];
+    }
 };
 
 StringBuffer createStringBuffer(char *buffer, u32 size);
