@@ -5,6 +5,20 @@ set(HEADERS
     common/mem.h
     common/types.h
     common/util.h
+
+    prob3.h
+    prob4.h
+    prob5.h
+    prob6.h
+    prob7.h
+    prob8.h
+    prob9.h
+    prob10.h
+    prob11.h
+    prob12.h
+    prob13.h
+    prob14.h
+    prob15.h
 )
 
 set(SOURCES

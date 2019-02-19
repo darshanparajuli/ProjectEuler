@@ -15,11 +15,12 @@
 #include "prob12.h"
 #include "prob13.h"
 #include "prob14.h"
+#include "prob15.h"
 
 #define SolveProblem(n, buffer) _SolveProblem(n, buffer)
 #define _SolveProblem(n, buffer) MacroConcat(solveProblem, n)(buffer)
 
-#define PROBLEM_NUMBER 14
+#define PROBLEM_NUMBER 15
 
 int main()
 {
