@@ -14,7 +14,7 @@ SolveProblemFunc(15)
 
     u32 gridSize = 20;
 
-    u64 *waysToGetToOuterPoints = ProblemPushArray(u64, gridSize + 1);
+    u64 *waysToGetToOuterPoints = PushArray(memoryArena, u64, gridSize + 1);
     waysToGetToOuterPoints[0] = 1;
 
     for (u32 i = 1; i <= gridSize; ++i)

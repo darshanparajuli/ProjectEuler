@@ -35,7 +35,7 @@ StringBuffer createStringBuffer(MemoryArena *memoryArena, u32 size)
     return createStringBuffer(buffer, size);
 }
 
-void stringBufferWrite(StringBuffer *sb, cstr *fmt, ...)
+void stringBufferFormat(StringBuffer *sb, cstr *fmt, ...)
 {
     if (sb->used >= sb->size)
     {
@@ -61,4 +61,17 @@ void stringBufferReverse(StringBuffer *buffer)
     {
         swap(&buffer->buffer[i], &buffer->buffer[buffer->used - i - 1]);
     }
+}
+
+
+void stringBufferCopy(StringBuffer *src, StringBuffer *dest)
+{
+    Assert(dest->used <= src->used);
+
+    for (usize i = 0; i < src->used; ++i)
+    {
+        dest->buffer[i] = src->buffer[i];
+    }
+
+    dest->used = src->used;
 }

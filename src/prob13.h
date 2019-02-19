@@ -226,14 +226,14 @@ SolveProblemFunc(13)
         carry = sum / 10;
         u32 digit = sum % 10;
 
-        stringBufferWrite(&stringBuffer, "%d", digit);
+        stringBufferFormat(&stringBuffer, "%d", digit);
     }
 
     while (carry != 0)
     {
         u32 digit = carry % 10;
         carry /= 10;
-        stringBufferWrite(&stringBuffer, "%d", digit);
+        stringBufferFormat(&stringBuffer, "%d", digit);
     }
 
     stringBufferReverse(&stringBuffer);

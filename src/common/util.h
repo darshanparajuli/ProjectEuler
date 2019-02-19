@@ -3,8 +3,8 @@
 
 #include <cstdlib>
 #include "log.h"
-#include "types.h"
 #include "mem.h"
+#include "types.h"
 
 #define MacroConcat(a, b) _MacroConcat(a, b)
 #define _MacroConcat(a, b) a##b
@@ -116,8 +116,14 @@ struct StringBuffer
 
 StringBuffer createStringBuffer(char *buffer, u32 size);
 StringBuffer createStringBuffer(MemoryArena *memoryArena, u32 size);
-void stringBufferWrite(StringBuffer *buffer, cstr *fmt, ...);
+void stringBufferFormat(StringBuffer *buffer, cstr *fmt, ...);
 void stringBufferReverse(StringBuffer *buffer);
+void stringBufferCopy(StringBuffer *src, StringBuffer *dest);
+
+internal inline void stringBufferClear(StringBuffer *sb)
+{
+    sb->used = 0;
+}
 
 internal inline u32 charToU32(char c)
 {

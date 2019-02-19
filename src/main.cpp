@@ -4,10 +4,8 @@
 #include "common/util.h"
 
 #define SolveProblemFunc(n) _SolveProblemFunc(n)
-#define _SolveProblemFunc(n) internal void MacroConcat(solveProblem, n)(MemoryArena * memoryArena, StringBuffer * output)
-#define ProblemWriteOutput(...) stringBufferWrite(output, __VA_ARGS__)
-#define ProblemPushStruct(...) PushStruct(memoryArena, __VA_ARGS__)
-#define ProblemPushArray(...) PushArray(memoryArena, __VA_ARGS__)
+#define _SolveProblemFunc(n) internal void MacroConcat(solveProblem, n)(MemoryArena * memoryArena, StringBuffer * _output)
+#define ProblemWriteOutput(...) stringBufferFormat(_output, __VA_ARGS__)
 
 // clang-format off
 #include "prob3.h"
@@ -23,11 +21,12 @@
 #include "prob13.h"
 #include "prob14.h"
 #include "prob15.h"
+#include "prob16.h"
 
 #define SolveProblem(n, memoryArena, buffer) _SolveProblem(n, memoryArena, buffer)
 #define _SolveProblem(n, memoryArena, buffer) MacroConcat(solveProblem, n)(memoryArena, buffer)
 
-#define PROBLEM_NUMBER 15
+#define PROBLEM_NUMBER 16
 
 int main()
 {
