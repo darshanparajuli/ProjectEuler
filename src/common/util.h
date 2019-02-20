@@ -71,7 +71,7 @@
 
 cstr *_getFileName(cstr *path);
 
-internal inline u32 stringLength(cstr *string)
+internal inline u32 stringGetLength(cstr *string)
 {
     u32 result = 0;
 

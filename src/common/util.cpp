@@ -5,7 +5,7 @@
 
 cstr *_getFileName(cstr *path)
 {
-    u32 count = stringLength(path);
+    u32 count = stringGetLength(path);
 
     for (u32 i = count - 1; i >= 0; --i)
     {

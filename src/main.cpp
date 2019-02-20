@@ -23,11 +23,12 @@
 #include "prob15.h"
 #include "prob16.h"
 #include "prob17.h"
+#include "prob18.h"
 
 #define SolveProblem(n, memoryArena, buffer) _SolveProblem(n, memoryArena, buffer)
 #define _SolveProblem(n, memoryArena, buffer) MacroConcat(solveProblem, n)(memoryArena, buffer)
 
-#define PROBLEM_NUMBER 17
+#define PROBLEM_NUMBER 18
 
 int main()
 {
