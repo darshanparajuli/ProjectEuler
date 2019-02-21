@@ -29,17 +29,11 @@ String createString(char *buffer, u32 size)
     return string;
 }
 
-String createString(MemoryArena *memoryArena, u32 size)
-{
-    char *buffer = PushArray(memoryArena, char, size);
-    return createString(buffer, size);
-}
-
 void stringFormat(String *string, cstr *fmt, ...)
 {
-    if (string->length >= string->size - 1)
+    if ((s32) string->length >= (s32) string->size - 1)
     {
-        LOGD("StringBuffer is full!\n");
+        LOGE("String buffer is full!\n");
     }
     else
     {
@@ -61,11 +55,11 @@ void stringFormat(String *string, cstr *fmt, ...)
         {
             if (writtenCount < 0)
             {
-                LOGD("Error writing string: %d\n", writtenCount);
+                LOGE("Error writing string: %d\n", writtenCount);
             }
             else
             {
-                LOGD("String buffer size (excluding null terminator) not enough; size: %d, input size: %d\n", available - 1, writtenCount);
+                LOGE("Insufficient string buffer size (excluding null terminator): size = %d, available = %d, input size = %d\n", string->size - 1, available - 1, writtenCount);
             }
         }
     }

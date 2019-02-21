@@ -120,7 +120,13 @@ struct String
 };
 
 String createString(char *buffer, u32 size);
-String createString(MemoryArena *memoryArena, u32 size);
+
+internal inline String createString(MemoryArena *memoryArena, u32 size)
+{
+    char *buffer = PushArray(memoryArena, char, size);
+    return createString(buffer, size);
+}
+
 void stringFormat(String *string, cstr *fmt, ...);
 void stringReverse(String *string);
 void stringCopy(String *src, String *dest);
