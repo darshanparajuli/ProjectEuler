@@ -3,9 +3,10 @@
 #include "common/mem.h"
 #include "common/util.h"
 
+// clang-format off
 #define SolveProblemFunc(n) _SolveProblemFunc(n)
-#define _SolveProblemFunc(n) internal void MacroConcat(solveProblem, n)(MemoryArena * memoryArena, StringBuffer * _output)
-#define ProblemWriteOutput(...) stringBufferFormat(_output, __VA_ARGS__)
+#define _SolveProblemFunc(n) internal void MacroConcat(solveProblem, n)(MemoryArena *memoryArena, String *_output)
+#define ProblemWriteOutput(...) stringFormat(_output, __VA_ARGS__)
 
 // clang-format off
 #include "prob3.h"
@@ -24,13 +25,14 @@
 #include "prob16.h"
 #include "prob17.h"
 #include "prob18.h"
+#include "prob19.h"
 
 #include "prob67.h"
 
 #define SolveProblem(n, memoryArena, buffer) _SolveProblem(n, memoryArena, buffer)
 #define _SolveProblem(n, memoryArena, buffer) MacroConcat(solveProblem, n)(memoryArena, buffer)
 
-#define PROBLEM_NUMBER 67
+#define PROBLEM_NUMBER 19
 
 int main()
 {
@@ -41,11 +43,11 @@ int main()
         InitMemoryArena(&memoryArena, size, memory);
     }
 
-    StringBuffer stringBuffer = createStringBuffer(&memoryArena, 256);
+    String output = createString(&memoryArena, 256);
 
-    SolveProblem(PROBLEM_NUMBER, &memoryArena, &stringBuffer);
+    SolveProblem(PROBLEM_NUMBER, &memoryArena, &output);
 
-    LOGI("Problem %d solution: %s\n", PROBLEM_NUMBER, stringBuffer.string);
+    LOGI("Problem %d solution: %s\n", PROBLEM_NUMBER, output.buffer);
 
     free(memoryArena.base);
 

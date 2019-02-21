@@ -106,37 +106,29 @@ ImplSwap(f32);
 ImplSwap(f64);
 ImplSwap(char);
 
-struct StringBuffer
+struct String
 {
-    char *string;
-    u32 capacity;
+    char *buffer;
+    u32 size;
 
     u32 length;
 
     inline char &operator[](usize index)
     {
-        return string[index];
+        return buffer[index];
     }
 };
 
-StringBuffer createStringBuffer(char *buffer, u32 capacity);
-StringBuffer createStringBuffer(MemoryArena *memoryArena, u32 capacity);
-void stringBufferFormat(StringBuffer *buffer, cstr *fmt, ...);
-void stringBufferReverse(StringBuffer *buffer);
-void stringBufferCopy(StringBuffer *src, StringBuffer *dest);
+String createString(char *buffer, u32 size);
+String createString(MemoryArena *memoryArena, u32 size);
+void stringFormat(String *string, cstr *fmt, ...);
+void stringReverse(String *string);
+void stringCopy(String *src, String *dest);
 
-internal inline void stringBufferClear(StringBuffer *sb, b32 overwrite = false)
+internal inline void stringClear(String *string)
 {
-    sb->length = 0;
-}
-
-internal inline void stringBufferClearOverwite(StringBuffer *sb)
-{
-    while (sb->length > 0)
-    {
-        sb->string[sb->length - 1] = 0;
-        --sb->length;
-    }
+    string->length = 0;
+    string->buffer[0] = 0;
 }
 
 internal inline u32 charToU32(char c)

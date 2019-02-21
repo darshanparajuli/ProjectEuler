@@ -212,7 +212,7 @@ SolveProblemFunc(13)
     };
 
     char buffer[100] = {};
-    StringBuffer stringBuffer = createStringBuffer(buffer, ArrayCount(buffer));
+    String string = createString(buffer, ArrayCount(buffer));
     u32 carry = 0;
 
     for (s32 i = 49; i >= 0; --i)
@@ -226,20 +226,20 @@ SolveProblemFunc(13)
         carry = sum / 10;
         u32 digit = sum % 10;
 
-        stringBufferFormat(&stringBuffer, "%d", digit);
+        stringFormat(&string, "%d", digit);
     }
 
     while (carry != 0)
     {
         u32 digit = carry % 10;
         carry /= 10;
-        stringBufferFormat(&stringBuffer, "%d", digit);
+        stringFormat(&string, "%d", digit);
     }
 
-    stringBufferReverse(&stringBuffer);
+    stringReverse(&string);
     for (u32 i = 0; i < 10; ++i)
     {
-        ProblemWriteOutput("%c", stringBuffer.string[i]);
+        ProblemWriteOutput("%c", string.buffer[i]);
     }
 }
 
