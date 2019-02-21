@@ -17,6 +17,52 @@ How many Sundays fell on the first of the month during the twentieth century (1 
 
 SolveProblemFunc(19)
 {
+    u32 result = 0;
+
+    u32 daysInMonthTable[] = {
+        31,  // Jan
+        28,  // *Feb
+        31,  // Mar
+        30,  // Apr
+        31,  // May
+        30,  // Jun
+        31,  // Jul
+        31,  // Aug
+        30,  // Sep
+        31,  // Oct
+        30,  // Nov
+        31,  // Dec
+    };
+
+    // 0 => Sunday
+    // start off on Monday => 1
+    u32 dayIndex = 1;
+
+    u32 year = 1900;
+    while (year <= 2000)
+    {
+        b32 canHaveLeapYear = year % 100 != 0 || year % 400 == 0;
+
+        for (u32 month = 0; month < 12; ++month)
+        {
+            u32 days = daysInMonthTable[month];
+            if (month == 1 && year % 4 == 0 && canHaveLeapYear)
+            {
+                ++days;
+            }
+
+            if (dayIndex == 0 && year >= 1901)
+            {
+                ++result;
+            }
+
+            dayIndex = (dayIndex + days) % 7;
+        }
+
+        ++year;
+    }
+
+    ProblemWriteOutput("%d", result);
 }
 
 #endif
