@@ -38,8 +38,7 @@ SolveProblemFunc(19)
     // start off on Monday => 1
     u32 dayIndex = 1;
 
-    u32 year = 1900;
-    while (year <= 2000)
+    for (u32 year = 1900; year <= 2000; ++year)
     {
         b32 canHaveLeapYear = year % 100 != 0 || year % 400 == 0;
 
@@ -58,8 +57,6 @@ SolveProblemFunc(19)
 
             dayIndex = (dayIndex + days) % 7;
         }
-
-        ++year;
     }
 
     ProblemWriteOutput("%d", result);
