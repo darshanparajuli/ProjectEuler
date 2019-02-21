@@ -64,7 +64,7 @@ SolveProblemFunc(12)
         }
     }
 
-    ProblemWriteOutput("%d", result);
+    WriteSolution("%d", result);
 }
 
 #endif

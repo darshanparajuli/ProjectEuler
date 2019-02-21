@@ -21,7 +21,7 @@ SolveProblemFunc(10)
         }
     }
 
-    ProblemWriteOutput("%llu\n", result);
+    WriteSolution("%llu\n", result);
 }
 
 #endif

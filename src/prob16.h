@@ -58,7 +58,7 @@ SolveProblemFunc(16)
         result += charToU32(output[i]);
     }
 
-    ProblemWriteOutput("%d", result);
+    WriteSolution("%d", result);
 }
 
 #endif

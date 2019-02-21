@@ -34,7 +34,7 @@ SolveProblemFunc(9)
     }
 
 end:
-    ProblemWriteOutput("%d", result);
+    WriteSolution("%d", result);
 }
 
 #endif

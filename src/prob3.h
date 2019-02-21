@@ -23,7 +23,7 @@ SolveProblemFunc(3)
         }
     }
 
-    ProblemWriteOutput("%llu", result);
+    WriteSolution("%llu", result);
 }
 
 #endif

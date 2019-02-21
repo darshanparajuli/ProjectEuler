@@ -32,7 +32,7 @@ SolveProblemFunc(15)
         waysToGetToOuterPoints[i] = result;
     }
 
-    ProblemWriteOutput("%llu", result);
+    WriteSolution("%llu", result);
 }
 
 #endif

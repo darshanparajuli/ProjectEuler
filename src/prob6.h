@@ -29,7 +29,7 @@ SolveProblemFunc(6)
     u64 squareOfTheSum = mathSquare(sum);
     result = squareOfTheSum - sumOfSquares;
 
-    ProblemWriteOutput("%llu", result);
+    WriteSolution("%llu", result);
 }
 
 #endif

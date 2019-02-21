@@ -52,7 +52,7 @@ SolveProblemFunc(8)
     u64 maxIndex = mathGetMaxIndex(products, ArrayCount(products));
     result = products[maxIndex];
 
-    ProblemWriteOutput("%llu", result);
+    WriteSolution("%llu", result);
 }
 
 #endif

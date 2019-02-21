@@ -239,7 +239,7 @@ SolveProblemFunc(13)
     stringReverse(&string);
     for (u32 i = 0; i < 10; ++i)
     {
-        ProblemWriteOutput("%c", string.buffer[i]);
+        WriteSolution("%c", string.buffer[i]);
     }
 }
 

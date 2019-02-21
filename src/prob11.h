@@ -121,7 +121,7 @@ SolveProblemFunc(11)
         }
     }
 
-    ProblemWriteOutput("%llu", result);
+    WriteSolution("%llu", result);
 }
 
 #endif

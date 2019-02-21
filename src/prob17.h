@@ -126,7 +126,7 @@ SolveProblemFunc(17)
         result += count(&string);
     }
 
-    ProblemWriteOutput("%d", result);
+    WriteSolution("%d", result);
 }
 
 #endif

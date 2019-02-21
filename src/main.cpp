@@ -6,7 +6,7 @@
 // clang-format off
 #define SolveProblemFunc(n) _SolveProblemFunc(n)
 #define _SolveProblemFunc(n) internal void MacroConcat(solveProblem, n)(MemoryArena *memoryArena, String *_output)
-#define ProblemWriteOutput(...) stringFormat(_output, __VA_ARGS__)
+#define WriteSolution(...) stringFormat(_output, __VA_ARGS__)
 
 // clang-format off
 #include "prob3.h"
