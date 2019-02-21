@@ -68,7 +68,6 @@ void stringFormat(String *string, cstr *fmt, ...)
                 LOGD("String buffer size (excluding null terminator) not enough; size: %d, input size: %d\n", available - 1, writtenCount);
             }
         }
-
     }
 }
 
