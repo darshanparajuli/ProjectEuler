@@ -26,13 +26,14 @@
 #include "prob17.h"
 #include "prob18.h"
 #include "prob19.h"
+#include "prob20.h"
 
 #include "prob67.h"
 
 #define SolveProblem(n, memoryArena, buffer) _SolveProblem(n, memoryArena, buffer)
 #define _SolveProblem(n, memoryArena, buffer) MacroConcat(solveProblem, n)(memoryArena, buffer)
 
-#define PROBLEM_NUMBER 19
+#define PROBLEM_NUMBER 20
 
 int main()
 {
@@ -47,7 +48,7 @@ int main()
 
     SolveProblem(PROBLEM_NUMBER, &memoryArena, &output);
 
-    LOGI("Problem %d solution: %s\n", PROBLEM_NUMBER, output.buffer);
+    LOGD("Problem %d solution: %s\n", PROBLEM_NUMBER, output.buffer);
 
     free(memoryArena.base);
 

@@ -119,10 +119,13 @@ struct String
     }
 };
 
+ImplSwap(String *);
+
 String createString(char *buffer, u32 size);
 
 internal inline String createString(MemoryArena *memoryArena, u32 size)
 {
+    size += 1;  // for null termination
     char *buffer = PushArray(memoryArena, char, size);
     return createString(buffer, size);
 }
@@ -130,6 +133,12 @@ internal inline String createString(MemoryArena *memoryArena, u32 size)
 void stringFormat(String *string, cstr *fmt, ...);
 void stringReverse(String *string);
 void stringCopy(String *src, String *dest);
+
+internal inline String &operator+=(String &string, cstr *s)
+{
+    stringFormat(&string, "%s", s);
+    return string;
+}
 
 internal inline void stringClear(String *string)
 {
@@ -147,6 +156,11 @@ internal inline u64 charToU64(char c)
 {
     u64 result = c - '0';
     return result;
+}
+
+internal inline b32 isDigit(char c)
+{
+    return c >= '0' && c <= '9';
 }
 
 #endif
