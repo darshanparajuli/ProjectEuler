@@ -4,15 +4,18 @@
 #include "types.h"
 
 #define ArrayCount(a) (sizeof(a) / sizeof((a)[0]))
-#define ZeroSize(ptr, size) _zeroIt(ptr, size)
-#define ZeroStruct(s) _zeroIt(&(s), sizeof(s))
-#define ZeroArray(ptr, count) _zeroIt(ptr, (count) * sizeof((ptr)[0]))
+#define ZeroSize(ptr, size) _zeroSize(ptr, size)
+#define ZeroStruct(s) _zeroSize(&(s), sizeof(s))
+#define ZeroArray(ptr, count) _zeroSize(ptr, (count) * sizeof((ptr)[0]))
 
 #define InitMemoryArena(arena, size, memory) _initMemoryArena(arena, (usize)(size), memory)
-#define PushStruct(arena, type) ((type *) _memoryArenaPush(arena, sizeof(type)))
-#define PushArray(arena, type, count) ((type *) _memoryArenaPush(arena, sizeof(type) * (usize)(count)))
+#define PushStruct(arena, type) ((type *) _memoryArenaPush(arena, sizeof(type), false))
+#define PushArray(arena, type, count) ((type *) _memoryArenaPush(arena, sizeof(type) * (usize)(count), false))
+#define PushStructAndZeroIt(arena, type) ((type *) _memoryArenaPush(arena, sizeof(type), true))
+#define PushArrayAndZeroIt(arena, type, count) ((type *) _memoryArenaPush(arena, sizeof(type) * (usize)(count), true))
 #define ResetMemoryArena(arena) _memoryArenaReset(arena, false)
 #define ZeroMemoryArena(arena) _memoryArenaReset(arena, true)
+#define FreeMemoryArena(arena) free((arena)->base)
 
 #define BeginTemporaryMemory(arena) _beginTemporaryMemory(arena)
 #define EndTemporaryMemory(temporaryMemory) _endTemporaryMemory(temporaryMemory)
@@ -33,8 +36,8 @@ struct GameMemory
 };
 
 void _initMemoryArena(MemoryArena *arena, usize size, u8 *memory);
-void *_memoryArenaPush(MemoryArena *mem, usize size);
-void _memoryArenaReset(MemoryArena *mem, b32 zeroIt);
+void *_memoryArenaPush(MemoryArena *arena, usize size, b32 zeroIt);
+void _memoryArenaReset(MemoryArena *arena, b32 zeroIt);
 
 struct TemporaryMemory
 {
@@ -45,7 +48,7 @@ struct TemporaryMemory
 TemporaryMemory _beginTemporaryMemory(MemoryArena *arena);
 void _endTemporaryMemory(TemporaryMemory memoryArena);
 
-inline void _zeroIt(void *ptr, usize size)
+inline void _zeroSize(void *ptr, usize size)
 {
     u8 *byte = (u8 *) ptr;
     while (size--)

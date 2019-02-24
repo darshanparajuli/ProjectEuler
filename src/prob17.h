@@ -50,7 +50,7 @@ internal void writeNumber(cstr **table, u32 n, String *output)
     }
 }
 
-internal inline u32 count(String *string)
+inline u32 count(String *string)
 {
     u32 result = 0;
 

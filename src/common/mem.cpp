@@ -10,11 +10,17 @@ void _initMemoryArena(MemoryArena *arena, usize size, u8 *memory)
     arena->temporaryCount = 0;
 }
 
-void *_memoryArenaPush(MemoryArena *arena, usize size)
+void *_memoryArenaPush(MemoryArena *arena, usize size, b32 zeroIt)
 {
     Assert((arena->used + size) <= arena->size);
     void *result = arena->base + arena->used;
     arena->used += size;
+
+    if (zeroIt)
+    {
+        ZeroSize(result, size);
+    }
+
     return result;
 }
 

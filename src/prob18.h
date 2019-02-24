@@ -34,7 +34,7 @@ However, Problem 67, is the same challenge with a triangle containing one-hundre
 and requires a clever method! ;o)
 */
 
-internal inline u32 twoDigitCharToU32(char *c)
+inline u32 twoDigitCharToU32(char *c)
 {
     return charToU32(c[0]) * 10 + charToU32(c[1]);
 }

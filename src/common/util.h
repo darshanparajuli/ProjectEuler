@@ -71,7 +71,7 @@
 
 cstr *_getFileName(cstr *path);
 
-internal inline u32 stringGetLength(cstr *string)
+inline u32 stringGetLength(cstr *string)
 {
     u32 result = 0;
 
@@ -86,12 +86,12 @@ internal inline u32 stringGetLength(cstr *string)
     return result;
 }
 
-#define ImplSwap(type)                          \
-    internal inline void swap(type *a, type *b) \
-    {                                           \
-        type temp = *a;                         \
-        *a = *b;                                \
-        *b = temp;                              \
+#define ImplSwap(type)                 \
+    inline void swap(type *a, type *b) \
+    {                                  \
+        type temp = *a;                \
+        *a = *b;                       \
+        *b = temp;                     \
     }
 
 ImplSwap(u8);
@@ -123,7 +123,7 @@ ImplSwap(String *);
 
 String createString(char *buffer, u32 size);
 
-internal inline String createString(MemoryArena *memoryArena, u32 size)
+inline String createString(MemoryArena *memoryArena, u32 size)
 {
     size += 1;  // for null termination
     char *buffer = PushArray(memoryArena, char, size);
@@ -134,31 +134,31 @@ void stringFormat(String *string, cstr *fmt, ...);
 void stringReverse(String *string);
 void stringCopy(String *src, String *dest);
 
-internal inline String &operator+=(String &string, cstr *s)
+inline String &operator+=(String &string, cstr *s)
 {
     stringFormat(&string, "%s", s);
     return string;
 }
 
-internal inline void stringClear(String *string)
+inline void stringClear(String *string)
 {
     string->length = 0;
     string->buffer[0] = 0;
 }
 
-internal inline u32 charToU32(char c)
+inline u32 charToU32(char c)
 {
     u32 result = c - '0';
     return result;
 }
 
-internal inline u64 charToU64(char c)
+inline u64 charToU64(char c)
 {
     u64 result = c - '0';
     return result;
 }
 
-internal inline b32 isDigit(char c)
+inline b32 isDigit(char c)
 {
     return c >= '0' && c <= '9';
 }
