@@ -25,6 +25,7 @@ set(HEADERS
     prob19.h
     prob20.h
     prob21.h
+    prob22.h
 
     prob67.h
 )

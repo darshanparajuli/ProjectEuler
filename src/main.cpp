@@ -28,13 +28,14 @@
 #include "prob19.h"
 #include "prob20.h"
 #include "prob21.h"
+#include "prob22.h"
 
 #include "prob67.h"
 
 #define SolveProblem(n, memoryArena, buffer) _SolveProblem(n, memoryArena, buffer)
 #define _SolveProblem(n, memoryArena, buffer) MacroConcat(solveProblem, n)(memoryArena, buffer)
 
-#define PROBLEM_NUMBER 21
+#define PROBLEM_NUMBER 22
 
 int main()
 {

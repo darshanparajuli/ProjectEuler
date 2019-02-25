@@ -130,9 +130,40 @@ inline String createString(MemoryArena *memoryArena, u32 size)
     return createString(buffer, size);
 }
 
+s32 stringCompare(cstr *a, cstr *b);
+
+inline s32 stringCompare(String *a, cstr *b)
+{
+    return stringCompare(a->buffer, b);
+}
+
+inline s32 stringCompare(String *a, String *b)
+{
+    return stringCompare(a, b->buffer);
+}
+
+inline b32 stringEqual(cstr *a, cstr *b)
+{
+    return stringCompare(a, b) == 0;
+}
+
+inline s32 stringEqual(String *a, cstr *b)
+{
+    return stringCompare(a, b) == 0;
+}
+
+inline s32 stringEqual(String *a, String *b)
+{
+    return stringCompare(a, b) == 0;
+}
+
 void stringFormat(String *string, cstr *fmt, ...);
 void stringReverse(String *string);
-void stringCopy(String *src, String *dest);
+void stringCopy(String *src, u32 srcOffset, String *dest, u32 destOffset, u32 count);
+inline void stringCopy(String *src, String *dest)
+{
+    stringCopy(src, 0, dest, 0, src->length);
+}
 
 inline String &operator+=(String &string, cstr *s)
 {
@@ -143,7 +174,7 @@ inline String &operator+=(String &string, cstr *s)
 inline void stringClear(String *string)
 {
     string->length = 0;
-    string->buffer[0] = 0;
+    string->buffer[0] = '\0';
 }
 
 inline u32 charToU32(char c)
@@ -162,5 +193,7 @@ inline b32 isDigit(char c)
 {
     return c >= '0' && c <= '9';
 }
+
+String readEntireFile(MemoryArena *arena, cstr *path);
 
 #endif

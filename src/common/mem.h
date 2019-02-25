@@ -29,21 +29,20 @@ struct MemoryArena
     s32 temporaryCount;
 };
 
-struct GameMemory
+struct TemporaryMemory
 {
-    MemoryArena permanent;
-    MemoryArena transient;
+    MemoryArena *arena;
+    usize used;
 };
 
 void _initMemoryArena(MemoryArena *arena, usize size, u8 *memory);
 void *_memoryArenaPush(MemoryArena *arena, usize size, b32 zeroIt);
 void _memoryArenaReset(MemoryArena *arena, b32 zeroIt);
 
-struct TemporaryMemory
+inline void *_memoryArenaPush(TemporaryMemory temporaryMemory, usize size, b32 zeroIt)
 {
-    MemoryArena *arena;
-    usize used;
-};
+    return _memoryArenaPush(temporaryMemory.arena, size, zeroIt);
+}
 
 TemporaryMemory _beginTemporaryMemory(MemoryArena *arena);
 void _endTemporaryMemory(TemporaryMemory memoryArena);

@@ -1,7 +1,10 @@
 #include "util.h"
+#include <cerrno>
 #include <cstdarg>
 #include <cstdio>
+#include <cstring>
 #include "log.h"
+#include "math.h"
 
 cstr *_getFileName(cstr *path)
 {
@@ -27,6 +30,28 @@ String createString(char *buffer, u32 size)
     string.length = 0;
 
     return string;
+}
+
+s32 stringCompare(cstr *a, cstr *b)
+{
+    s32 result = 0;
+
+    if (a && b)
+    {
+        while (*a && *b)
+        {
+            if (*a != *b)
+            {
+                result = *a - *b;
+                break;
+            }
+
+            ++a;
+            ++b;
+        }
+    }
+
+    return result;
 }
 
 void stringFormat(String *string, cstr *fmt, ...)
@@ -74,14 +99,60 @@ void stringReverse(String *string)
     }
 }
 
-void stringCopy(String *src, String *dest)
+void stringCopy(String *src, u32 srcOffset, String *dest, u32 destOffset, u32 count)
 {
-    Assert(dest->length <= src->length);
+    Assert(count <= dest->size - destOffset - 1);
+    Assert(srcOffset <= src->length);
 
-    for (usize i = 0; i < src->length; ++i)
+    dest->length = 0;
+    for (usize i = 0; i < dest->size - 1; ++i)
     {
-        dest->buffer[i] = src->buffer[i];
+        dest->buffer[destOffset + i] = src->buffer[srcOffset + i];
+        ++dest->length;
     }
 
-    dest->length = src->length;
+    dest->buffer[dest->length] = '\0';
 }
+
+String readEntireFile(MemoryArena *arena, cstr *path)
+{
+    String string = {};
+
+    FILE *fp = fopen(path, "r");
+    if (fp)
+    {
+        fseek(fp, 0, SEEK_END);
+        u32 size = ftell(fp);
+        fseek(fp, 0, SEEK_SET);
+
+        TemporaryMemory temporaryMemory = BeginTemporaryMemory(arena);
+        string = createString(temporaryMemory.arena, size);
+
+        if (fread(string.buffer, 1, size, fp) != size)
+        {
+            if (feof(fp))
+            {
+                LOGE("EOF reached reading %s\n", path);
+            }
+            else if (ferror(fp))
+            {
+                LOGE("Error reading %s: %s\n", path, strerror(errno));
+            }
+            EndTemporaryMemory(temporaryMemory);
+            string = {};
+        }
+        else
+        {
+            string.length = size;
+        }
+
+        fclose(fp);
+    }
+    else
+    {
+        LOGE("Unable to open %s\n", path);
+    }
+
+    return string;
+}
+
