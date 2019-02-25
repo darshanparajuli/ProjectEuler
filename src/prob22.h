@@ -87,30 +87,16 @@ void merge(MemoryArena *memoryArena, ParsedNames parsedNames, s32 low, s32 mid, 
     {
         String *a = &parsedNames.names[firstHalfFrom];
         String *b = &parsedNames.names[secondHalfFrom];
-        s32 compareResult = stringCompare(a, b);
 
-        if (compareResult < 0)
+        if (stringCompare(a, b) <= 0)
         {
             sortedArray[nextIndex++] = *a;
             ++firstHalfFrom;
         }
-        else if (compareResult > 0)
+        else
         {
             sortedArray[nextIndex++] = *b;
             ++secondHalfFrom;
-        }
-        else
-        {
-            if (a->length <= b->length)
-            {
-                sortedArray[nextIndex++] = *a;
-                ++firstHalfFrom;
-            }
-            else
-            {
-                sortedArray[nextIndex++] = *b;
-                ++secondHalfFrom;
-            }
         }
     }
 

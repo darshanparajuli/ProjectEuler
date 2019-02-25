@@ -38,16 +38,26 @@ s32 stringCompare(cstr *a, cstr *b)
 
     if (a && b)
     {
-        while (*a && *b)
+        while (*a && *b && *a == *b)
         {
-            if (*a != *b)
-            {
-                result = *a - *b;
-                break;
-            }
-
             ++a;
             ++b;
+        }
+
+        result = *a - *b;
+        if (result == 0)
+        {
+            // NOTE(dparajuli): a and b are equal till min(length(a), length(b))
+            if (!*a && *b)
+            {
+                // NOTE(dparajuli): a is smaller in length, a comes first
+                result = -1;
+            }
+            else if (*a && !*b)
+            {
+                // NOTE(dparajuli): b is smaller in length, b comes first
+                result = 1;
+            }
         }
     }
 
